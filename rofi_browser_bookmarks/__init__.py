@@ -25,7 +25,7 @@ def main():
     options = FormatColumns().format(parser.parse(folder=folder))
 
     try:
-        selection = check_output(['rofi', '-dmenu'], input=options.encode()).decode().strip()
+        selection = check_output(['rofi', '-i', '-dmenu'], input=options.encode()).decode().strip()
         url = selection.split('\t')[1]
         run([browser, url])
     except CalledProcessError as e:
