@@ -15,6 +15,10 @@ def main():
     if len(argv) > 2:
         folder = argv[2]
 
+    file_path = None
+    if len(argv) > 3:
+        file_path = argv[3]
+
     factory = BookmarksParserFactory()
     try:
         parser = factory.make(browser)
@@ -22,7 +26,7 @@ def main():
         print("Available browsers are: google-chrome")
         return
 
-    options = FormatColumns().format(parser.parse(folder=folder))
+    options = FormatColumns().format(parser.parse(folder=folder, file_path=file_path))
 
     try:
         selection = check_output(['rofi', '-i', '-dmenu'], input=options.encode()).decode().strip()

@@ -13,7 +13,7 @@ pip3 install rofi_browser_bookmarks
 ## Usage
 
 ```bash
-rofi-browser-bookmarks BROWSER [folder]
+rofi-browser-bookmarks BROWSER [folder] [file_path]
 ```
 
 Currently only `google-chrome` is a supported browser.

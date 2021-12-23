@@ -5,8 +5,12 @@ from subprocess import CalledProcessError
 import json
 
 class ChromeBookmarksParser:
-    def parse(self, folder=None) -> str:
-        bookmarks_path = path.expanduser("~") + "/.config/google-chrome/Default/Bookmarks"
+    def parse(self, folder=None, file_path=None) -> str:
+        if file_path is None:
+            bookmarks_path = path.expanduser("~") + "/.config/google-chrome/Default/Bookmarks"
+        else:
+            bookmarks_path = path.expanduser(file_path)
+
 
         if not path.isfile(bookmarks_path):
             print("No bookmarks file found!")
