@@ -23,13 +23,13 @@ def main():
     try:
         parser = factory.make(browser)
     except BrowserNotFoundException as e:
-        print("Available browsers are: google-chrome")
+        print("Available browsers are: google-chrome, firefox")
         return
 
     options = FormatColumns().format(parser.parse(folder=folder, file_path=file_path))
 
     try:
-        selection = check_output(['rofi', '-i', '-dmenu'], input=options.encode()).decode().strip()
+        selection = check_output(['rofi', '-matching', 'fuzzy', '-i', '-dmenu'], input=options.encode()).decode().strip()
         url = selection.split('\t')[1]
         run([browser, url])
     except CalledProcessError as e:
